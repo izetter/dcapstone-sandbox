@@ -1,0 +1,7 @@
+.terraform/
+variables.tf
+*.tfvars
+*.tfvars.json
+*.tfstate
+*.tfstate.*
+outputs.tf
