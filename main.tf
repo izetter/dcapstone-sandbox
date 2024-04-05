@@ -50,8 +50,9 @@ resource "aws_route_table" "my_main_route_table" {
 	}
 }
 
-resource "aws_route_table_association" "my_main_route_table_association" {
-	subnet_id      = aws_subnet.my_public_subnet.id
+resource "aws_main_route_table_association" "my_main_route_table_association" {
+	vpc_id         = aws_vpc.my_sandbox_vpc.id
+	# subnet_id      = aws_subnet.my_public_subnet.id
 	route_table_id = aws_route_table.my_main_route_table.id
 }
 
