@@ -1,8 +1,9 @@
 resource "aws_instance" "my_eip_instance" {
-	ami           = var.ami_id
-	instance_type = var.instance_type
-	subnet_id     = aws_subnet.my_public_subnet.id
+	ami                    = var.ami_id
+	instance_type          = var.instance_type
+	subnet_id              = aws_subnet.my_public_subnet.id
 	vpc_security_group_ids = [aws_security_group.sandbox_security_group.id]
+	user_data              = file("${path.module}/user_data.sh")
 	tags = {
 		Name = var.name_tag
 	}
