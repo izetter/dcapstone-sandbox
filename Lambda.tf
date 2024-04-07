@@ -2,7 +2,7 @@ resource "aws_lambda_function" "remove_eip" {
 	function_name = "remove_ec2_eip"
 	handler       = "lambda_function.lambda_handler"
 	role          = aws_iam_role.lambda_ec2_execution_role.arn
-	# runtime       = "python3.8"
+	runtime       = "python3.12"
 	filename      = "lambda_function_payload.zip"
 }
 
