@@ -4,6 +4,8 @@ resource "aws_lambda_function" "remove_eip" {
 	role          = aws_iam_role.lambda_ec2_execution_role.arn
 	runtime       = "python3.12"
 	filename      = "lambda_function_payload.zip"
+
+	source_code_hash = filebase64sha256("lambda_function_payload.zip")
 }
 
 resource "aws_cloudwatch_event_rule" "ec2_deployed" {

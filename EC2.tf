@@ -4,6 +4,7 @@ resource "aws_instance" "my_eip_instance" {
 	subnet_id              = aws_subnet.my_public_subnet.id
 	vpc_security_group_ids = [aws_security_group.sandbox_security_group.id]
 	user_data              = file("${path.module}/user_data.sh")
+	associate_public_ip_address = false
 	tags = {
 		Name = var.name_tag
 	}
