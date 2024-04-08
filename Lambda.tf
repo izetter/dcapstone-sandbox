@@ -2,10 +2,17 @@ resource "aws_lambda_function" "remove_eip" {
 	function_name = "remove_ec2_eip"
 	handler       = "lambda_function.lambda_handler"
 	role          = aws_iam_role.lambda_ec2_execution_role.arn
-	runtime       = "python3.12"
-	filename      = "lambda_function_payload.zip"
+	runtime       = var.python_runtime
+	filename      = var.lambda_zip_file
+	source_code_hash = filebase64sha256(var.lambda_zip_file)
+	layers = [aws_lambda_layer_version.lambda_layer.arn]
+}
 
-	source_code_hash = filebase64sha256("lambda_function_payload.zip")
+resource "aws_lambda_layer_version" "lambda_layer" {
+	filename   = "python_layer/python_layer.zip"
+	layer_name = "my_lambda_layer"
+
+	compatible_runtimes = [var.python_runtime]
 }
 
 resource "aws_cloudwatch_event_rule" "ec2_deployed" {
