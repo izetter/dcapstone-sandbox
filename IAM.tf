@@ -1,3 +1,5 @@
+# Lambda related ===========================================================
+
 resource "aws_iam_policy" "lambda_ec2_policy" {
 	name        = "LambdaEC2ElasticIPManagementPolicy"
 	description = "IAM policy for disassociating Elastic IPs from EC2 instances"
